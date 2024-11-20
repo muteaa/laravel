@@ -23,16 +23,17 @@ class DatabaseSeeder extends Seeder
             'email' => 'mario@gmail.com',
             'password' => bcrypt('123456'),
         ]);
-        Karyawan::factory(5)->create([
+        Karyawan::factory()->create([
             'nama_karyawan' => 'Mutea',
             'kontak_karyawan' => '081241234123',
             'email' => 'mutea@gmail.com',
             'password' => bcrypt('123456'),
         ]);
+        Karyawan::factory(5)->create();
         Produk::factory(5)->create();
         Pelanggan::factory(5)->create(); 
-        Transaksi::factory(10)->create(); 
-        DetailTransaksi::factory(20)->create();
+        Transaksi::factory(5)->create(); 
+        DetailTransaksi::factory(5)->create();
 
     }
 }

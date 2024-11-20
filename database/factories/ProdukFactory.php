@@ -13,7 +13,7 @@ class ProdukFactory extends Factory
     {
         return [
             'nama_produk' => $this->faker->word(),
-            'harga_produk' => $this->faker->randomFloat(2, 10, 500), // Harga antara 10 sampai 500
+            'harga_produk' => $this->faker->randomFloat( 10000, 50000), // Harga antara 10 sampai 500
             'stok_produk' => $this->faker->numberBetween(10, 100),   // Stok antara 10 sampai 100
         ];
     }
