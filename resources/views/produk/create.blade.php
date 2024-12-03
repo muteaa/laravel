@@ -14,16 +14,12 @@
                     <input type="text" name="nama_produk" required>
                 </div>
                 <div>
-                    <label>Deskripsi:</label>
-                    <textarea name="deskripsi"></textarea>
-                </div>
-                <div>
                     <label>Harga:</label>
-                    <input type="number" name="harga" required>
+                    <input type="number" name="harga_produk" required>
                 </div>
                 <div>
                     <label>Stok:</label>
-                    <input type="number" name="stok" required>
+                    <input type="number" name="stok_produk" required>
                 </div>
                 <button type="submit">Add Produk</button>
             </form>

@@ -10,7 +10,7 @@ class KaryawanController extends Controller
     public function index()
     {
         $karyawan = Karyawan::all();
-        return view('karyawan', compact('karyawan'));
+        return view('karyawan.index', compact('karyawan'));
     }
 
     // Show the form for creating a new resource
@@ -32,7 +32,7 @@ class KaryawanController extends Controller
         $karyawan = Karyawan::create($validatedData);
 
         if ($karyawan) {
-            return redirect()->route('karyawan')->with('success', 'Karyawan created successfully.');
+            return redirect()->route('karyawan.index')->with('success', 'Karyawan created successfully.');
         } else {
             return redirect()->back()->with('error', 'Failed to create karyawan.');
         }
@@ -65,6 +65,6 @@ class KaryawanController extends Controller
         $karyawan = Karyawan::findOrFail($id);
         $karyawan->delete();
 
-        return redirect()->route('karyawan')->with('success', 'Karyawan deleted successfully.');
+        return redirect()->route('karyawan.index')->with('success', 'Karyawan deleted successfully.');
     }
 }

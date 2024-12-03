@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoyalitasController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -21,17 +22,36 @@ Route::put('/karyawan/{id}', [KaryawanController::class, 'update'])->name('karya
 Route::delete('/karyawan/{id}', [KaryawanController::class, 'destroy'])->name('karyawan.destroy'); // Delete karyawan
 //}
 
-
-Route::get('/pelanggan', [PelangganController::class, 'index']);
 Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
-Route::get('/produk/create', [KaryawanController::class, 'create'])->name('produk.create'); // Show form to create karyawan
-Route::post('/produk', [KaryawanController::class, 'store'])->name('produk.store'); // Store new karyawan
-Route::get('/produk/{id}/edit', [KaryawanController::class, 'edit'])->name('produk.edit'); // Show form to edit karyawan
-Route::put('/produk/{id}', [KaryawanController::class, 'update'])->name('produk.update'); // Update karyawan
-Route::delete('/produk/{id}', [KaryawanController::class, 'destroy'])->name('produk.destroy'); // Delete karyawan
+Route::get('/produk/create', [ProdukController::class, 'create'])->name('produk.create'); // Show form to create karyawan
+Route::post('/produk', [ProdukController::class, 'store'])->name('produk.store'); // Store new karyawan
+Route::get('/produk/{id}/edit', [ProdukController::class, 'edit'])->name('produk.edit'); // Show form to edit karyawan
+Route::put('/produk/{id}', [ProdukController::class, 'update'])->name('produk.update'); // Update karyawan
+Route::delete('/produk/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy'); // Delete karyawan
 
+// Loyalitas (Pelanggan) CRUD routes    
+// Route::resource('loyalitas', LoyalitasController::class);
+Route::prefix('admin')->group(function () {
+    Route::get('/loyalitas', [LoyalitasController::class, 'index'])->name('loyalitas.index');
+});
+Route::get('/loyalitas/create', [LoyalitasController::class, 'create'])->name('loyalitas.create'); // Show form to create loyalitas
+Route::post('/loyalitas', [LoyalitasController::class, 'store'])->name('loyalitas.store'); // Store new loyalitas
+Route::get('/loyalitas/{id}/edit', [LoyalitasController::class, 'edit'])->name('loyalitas.edit'); // Show form to edit loyalitas
+Route::put('/loyalitas/{id}', [LoyalitasController::class, 'update'])->name('loyalitas.update'); // Update loyalitas
+Route::delete('/loyalitas/{id}', [LoyalitasController::class, 'destroy'])->name('loyalitas.destroy'); // Delete loyalitas
+
+// Route::resource('transaksi', TransaksiController::class);
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create'); // Show form to create loyalitas
+Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store'); // Store new loyalitas
+Route::get('/transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit'); // Show form to edit loyalitas
+Route::put('/transaksi/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
+Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy'); // Delete loyalitas
+
+
 Route::get('/detail-transaksi', [DetailTransaksiController::class, 'index']);
+// Route::get('/detail-transaksi', [TransaksiController::class, 'index']);
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,10 +64,6 @@ Route::get('/dashboard', function () {
 Route::get('/stok', function () {
     return view('stok');
 })->middleware(['auth', 'verified'])->name('stok');
-
-Route::get('/loyalitas', function () {
-    return view('karyawan');
-})->middleware(['auth', 'verified'])->name('loyalitas');
 
 Route::get('/laporan', function () {
     return view('laporan');

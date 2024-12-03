@@ -46,12 +46,12 @@
                             <td class="border px-4 py-2">{{ $p->harga_produk}}</td>
                             <td class="border px-4 py-2">{{ $p->stok_produk}}</td>
                             <td class="border px-4 py-2">
-                                <a href="{{ route('produk.edit', $p->id_produk) }}" class="btn btn-secondary">Edit</a>
+                                <a href="{{ route('produk.edit', $p->id_produk) }}" class="btn btn-secondary text-blue-500">Edit</a>
                                 <form action="{{ route('produk.destroy', $p->id_produk) }}" method="POST"
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger text-red-500">Delete</button>
                                 </form>
                             </td>
                         </tr>

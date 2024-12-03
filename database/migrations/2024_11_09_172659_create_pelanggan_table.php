@@ -12,10 +12,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pelanggan', function (Blueprint $table) {
-            $table->id();
+            // Use a string for the ID instead of auto-increment integer
+            $table->string('id')->primary();  // Now 'id' is a string column
             $table->string('nama_member');
             $table->string('kontak_member')->nullable();
-            $table->text('alamat_member')->nullable();
+            $table->string('alamat_member')->nullable();
             $table->timestamps();
         });
     }
