@@ -30,19 +30,22 @@ Route::put('/produk/{id}', [ProdukController::class, 'update'])->name('produk.up
 Route::delete('/produk/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy'); // Delete karyawan
 
 // Loyalitas (Pelanggan) CRUD routes    
-Route::get('/loyalitas', [LoygtalitasController::class, 'index'])->name('loyalitas');
+// Route::resource('loyalitas', LoyalitasController::class);
+Route::prefix('admin')->group(function () {
+    Route::get('/loyalitas', [LoyalitasController::class, 'index'])->name('loyalitas.index');
+});
 Route::get('/loyalitas/create', [LoyalitasController::class, 'create'])->name('loyalitas.create'); // Show form to create loyalitas
 Route::post('/loyalitas', [LoyalitasController::class, 'store'])->name('loyalitas.store'); // Store new loyalitas
 Route::get('/loyalitas/{id}/edit', [LoyalitasController::class, 'edit'])->name('loyalitas.edit'); // Show form to edit loyalitas
 Route::put('/loyalitas/{id}', [LoyalitasController::class, 'update'])->name('loyalitas.update'); // Update loyalitas
 Route::delete('/loyalitas/{id}', [LoyalitasController::class, 'destroy'])->name('loyalitas.destroy'); // Delete loyalitas
 
+// Route::resource('transaksi', TransaksiController::class);
 Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
 Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create'); // Show form to create loyalitas
 Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store'); // Store new loyalitas
 Route::get('/transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit'); // Show form to edit loyalitas
 Route::put('/transaksi/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
-
 Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy'); // Delete loyalitas
 
 
@@ -61,11 +64,6 @@ Route::get('/dashboard', function () {
 Route::get('/stok', function () {
     return view('stok');
 })->middleware(['auth', 'verified'])->name('stok');
-
-Route::get('/loyalitas/index', function () {
-    return view('loyalitas.index');
-})->middleware(['auth', 'verified'])->name('loyalitas');
-
 
 Route::get('/laporan', function () {
     return view('laporan');

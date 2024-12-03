@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Models\User;
@@ -12,10 +13,10 @@ class Transaksi extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaksi';
-    protected $primaryKey = 'kode_transaksi'; // Custom primary key
-    public $incrementing = true; // Jika kode_transaksi adalah auto increment
-    protected $keyType = 'int'; // Tipe data dari primary key
+    protected $table = 'transaksi';  // Table name (optional, as it defaults to plural)
+    protected $primaryKey = 'kode_transaksi';  // Custom primary key
+    public $incrementing = true;  // Auto-increment primary key
+    protected $keyType = 'int';  // Type of the primary key
 
     protected $fillable = [
         'id_pemilik',

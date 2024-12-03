@@ -11,10 +11,10 @@ class LoyalitasController extends Controller
     {
         // Fetch all Pelanggan records
         $pelanggan = Pelanggan::all();
-
         // Pass the data to the view
         return view('loyalitas.index', compact('pelanggan'));
     }
+
 
     public function create()
     {

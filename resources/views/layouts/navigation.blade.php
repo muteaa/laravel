@@ -32,9 +32,9 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('loyalitas')" :active="request()->routeIs('loyalitas')">
-                        {{ __('Loyalitas') }}
-                    </x-nav-link>
+                <a href="{{ route('loyalitas.index') }}">
+                    Loyalitas
+                </a>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('transaksi')" :active="request()->routeIs('transaksi')">

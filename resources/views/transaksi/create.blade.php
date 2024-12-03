@@ -19,6 +19,7 @@
                             class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     </div>
 
+                    <!-- Nama Pegawai -->
                     <div>
                         <label for="karyawan_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Nama Pegawai
@@ -37,59 +38,41 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-gray-700">
                                 <tr>
-                                    <th
-                                        class="px-4 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Produk</th>
-                                    <th
-                                        class="px-4 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Jumlah</th>
-                                    <th
-                                        class="px-4 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Subtotal</th>
-                                    <th
-                                        class="px-4 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Aksi</th>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">Produk</th>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">Jumlah</th>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">Subtotal</th>
+                                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-700 dark:text-gray-300">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="produk-container">
-                                <!-- Template row yang akan diclone -->
-                                <tr class="produk-row" data-row="0">
+                                <tr class="produk-row">
                                     <td class="px-4 py-3">
                                         <select name="produk[]" required
                                             class="produk-dropdown mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                             <option value="" selected disabled>Pilih Produk</option>
                                             @foreach ($produks as $produk)
-                                                <option value="{{ $produk->id_produk }} "
-                                                    data-harga="{{ $produk->harga_produk}}">
+                                                <option value="{{ $produk->id_produk }}" data-harga="{{ $produk->harga_produk }}">
                                                     {{ $produk->nama_produk }} - Rp{{ number_format($produk->harga_produk, 0, ',', '.') }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td class="px-4 py-3">
-                                        <input type="number" name="jumlah[]" required
-                                            class="jumlah-produk mt-1 block w-24 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                            value="1" min="1">
+                                        <input type="number" name="jumlah[]" value="1" min="1" required
+                                            class="jumlah-produk mt-1 block w-24 rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     </td>
                                     <td class="px-4 py-3">
                                         <span class="subtotal text-gray-900 dark:text-gray-100 font-medium">Rp0</span>
                                     </td>
                                     <td class="px-4 py-3">
-                                        <button type="button"
-                                            class="hapus-produk hidden text-sm px-3 py-1 text-red-600 hover:text-red-800">
-                                            Hapus
-                                        </button>
+                                        <button type="button" class="hapus-produk text-red-600 hover:text-red-800 hidden">Hapus</button>
                                     </td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="2"
-                                        class="px-4 py-3 text-right text-sm font-medium text-gray-700 dark:text-gray-300">
-                                        Total:
-                                    </td>
-                                    <td colspan="2"
-                                        class="px-4 py-3 text-left text-lg font-bold text-gray-900 dark:text-gray-100">
+                                    <td colspan="2" class="px-4 py-3 text-right text-sm font-medium text-gray-700 dark:text-gray-300">Total:</td>
+                                    <td colspan="2" class="px-4 py-3 text-lg font-bold text-gray-900 dark:text-gray-100">
                                         <span id="total-display">Rp0</span>
                                         <input type="hidden" name="total_harga" id="total_harga" value="0">
                                     </td>
@@ -100,40 +83,24 @@
 
                     <!-- Tombol Tambah Produk -->
                     <div class="mt-4">
-                        <button type="button" id="tambah-produk"
-                            class="inline-flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-md shadow-sm">
+                        <button type="button" id="tambah-produk" class="px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm">
                             Tambah Produk
                         </button>
                     </div>
 
-                    <!-- Kode Referal -->
+                    <!-- Total Pembayaran -->
                     <div>
-                        <label for="kode_referal" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Kode Referal (Opsional)
-                        </label>
-                        <input type="text" name="kode_referal" id="kode_referal"
-                            class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    </div>
-
-                    <!-- Kolom Total Pembayaran -->
-                    <div class="mt-4">
                         <label for="total_pembayaran" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Total Pembayaran
                         </label>
-                        <input type="number" name="total_pembayaran" id="total_pembayaran" required
-                            class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="0" min="0">
+                        <input type="number" name="total_pembayaran" id="total_pembayaran" min="0" required
+                            class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 shadow-sm">
                         <small id="total-error" class="text-red-600 hidden">Total pembayaran tidak boleh kurang dari subtotal!</small>
                     </div>
 
-                    <!-- Tombol Submit dan Batal -->
-                    <div class="flex justify-between space-x-2 mt-6">
-                        <button type="button" onclick="window.location.href='{{ route('transaksi') }}'"
-                            class="inline-flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-                            Batal
-                        </button>
-
-                        <button type="submit"
-                            class="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <!-- Tombol Submit -->
+                    <div class="flex justify-end mt-6">
+                        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-md shadow-sm">
                             Simpan Transaksi
                         </button>
                     </div>
@@ -151,10 +118,9 @@
                 const totalDisplay = document.getElementById('total-display');
                 const totalPembayaranInput = document.getElementById('total_pembayaran');
                 const totalError = document.getElementById('total-error');
-                let rowCounter = 0;
 
-                function formatRupiah(angka) {
-                    return 'Rp' + new Intl.NumberFormat('id-ID').format(angka);
+                function formatRupiah(number) {
+                    return 'Rp' + new Intl.NumberFormat('id-ID').format(number);
                 }
 
                 function updateSubtotal(row) {
@@ -163,62 +129,52 @@
                     const subtotalSpan = row.querySelector('.subtotal');
 
                     const selectedOption = dropdown.options[dropdown.selectedIndex];
-                    if (selectedOption && !selectedOption.disabled) {
-                        const harga = parseInt(selectedOption.getAttribute('data-harga')) || 0;
-                        const jumlah = parseInt(jumlahInput.value) || 0;
-                        const subtotal = harga_produk * jumlah;
-                        subtotalSpan.textContent = formatRupiah(subtotal);
-                        return subtotal;
-                    }
-                    subtotalSpan.textContent = 'Rp0';
-                    return 0;
+                    const harga = parseInt(selectedOption.getAttribute('data-harga')) || 0;
+                    const jumlah = parseInt(jumlahInput.value) || 1;
+                    const subtotal = harga * jumlah;
+
+                    subtotalSpan.textContent = formatRupiah(subtotal);
+                    return subtotal;
                 }
 
-                function updateTotalHarga() {
+                function updateTotal() {
                     let total = 0;
-                    const produkRows = produkContainer.querySelectorAll('.produk-row');
-                    produkRows.forEach(row => {
+                    document.querySelectorAll('.produk-row').forEach(row => {
                         total += updateSubtotal(row);
                     });
                     totalHargaInput.value = total;
                     totalDisplay.textContent = formatRupiah(total);
-                    totalPembayaranInput.value = total;
-                    totalError.classList.add('hidden');
+
+                    if (parseInt(totalPembayaranInput.value) < total) {
+                        totalError.classList.remove('hidden');
+                    } else {
+                        totalError.classList.add('hidden');
+                    }
                 }
 
-                // Event listener untuk produk dropdown
-                produkContainer.addEventListener('change', (e) => {
-                    if (e.target.classList.contains('produk-dropdown') || e.target.classList.contains('jumlah-produk')) {
-                        updateTotalHarga();
-                    }
-                });
-
-                // Tombol Tambah Produk
                 tambahProdukButton.addEventListener('click', () => {
-                    rowCounter++;
                     const newRow = produkContainer.querySelector('.produk-row').cloneNode(true);
-                    newRow.dataset.row = rowCounter;
                     newRow.querySelector('.hapus-produk').classList.remove('hidden');
                     produkContainer.appendChild(newRow);
-                    updateTotalHarga();
+                    updateTotal();
                 });
 
-                // Hapus Produk
-                produkContainer.addEventListener('click', (e) => {
+                produkContainer.addEventListener('input', () => {
+                    updateTotal();
+                });
+
+                produkContainer.addEventListener('click', e => {
                     if (e.target.classList.contains('hapus-produk')) {
-                        e.target.closest('tr').remove();
-                        updateTotalHarga();
+                        e.target.closest('.produk-row').remove();
+                        updateTotal();
                     }
                 });
 
-                // Validasi form
-                const form = document.getElementById('transaksiForm');
-                form.addEventListener('submit', (e) => {
-                    if (parseInt(totalPembayaranInput.value) < parseInt(totalHargaInput.value)) {
-                        totalError.classList.remove('hidden');
-                        e.preventDefault();
-                    }
+                totalPembayaranInput.addEventListener('input', () => {
+                    updateTotal();
                 });
+
+                updateTotal();
             });
         </script>
     @endpush
