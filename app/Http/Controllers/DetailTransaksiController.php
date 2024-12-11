@@ -11,10 +11,7 @@ class DetailTransaksiController extends Controller
      */
     public function index()
     {
-        // Ambil data transaksi dengan relasi detail transaksi dan produk
-        $transaksis = Transaksi::with('details.produk', 'pelanggan')->get();
-        
-        // Kirim data transaksi ke view
+        $transaksis = Transaksi::with('detailTransaksi.produk', 'pelanggan', 'karyawan')->get();
         return view('laporan', compact('laporan'));
     }
 

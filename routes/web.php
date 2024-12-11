@@ -14,7 +14,7 @@ Route::get('/users', [UserController::class, 'index']);
 
 //karyawan route
 //{
-Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan'); // List all karyawan
+Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan.index'); // List all karyawan
 Route::get('/karyawan/create', [KaryawanController::class, 'create'])->name('karyawan.create'); // Show form to create karyawan
 Route::post('/karyawan', [KaryawanController::class, 'store'])->name('karyawan.store'); // Store new karyawan
 Route::get('/karyawan/{id}/edit', [KaryawanController::class, 'edit'])->name('karyawan.edit'); // Show form to edit karyawan
@@ -41,15 +41,19 @@ Route::put('/loyalitas/{id}', [LoyalitasController::class, 'update'])->name('loy
 Route::delete('/loyalitas/{id}', [LoyalitasController::class, 'destroy'])->name('loyalitas.destroy'); // Delete loyalitas
 
 // Route::resource('transaksi', TransaksiController::class);
-Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
 Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create'); // Show form to create loyalitas
 Route::post('/transaksi', [TransaksiController::class, 'store'])->name('transaksi.store'); // Store new loyalitas
 Route::get('/transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit'); // Show form to edit loyalitas
-Route::put('/transaksi/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
-Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy'); // Delete loyalitas
+Route::put('transaksi/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
+
+Route::delete('/laporan/destroy', [TransaksiController::class, 'destroy'])->name('transaksi.destroy'); // Delete loyalitas
 
 
-Route::get('/detail-transaksi', [DetailTransaksiController::class, 'index']);
+Route::get('/laporan', [TransaksiController::class, 'laporan'])->name('laporan');
+Route::get('/laporan/detail/{id}', [TransaksiController::class, 'detail'])->name('laporan.detail');
+Route::get('/laporan/print/{id}', [TransaksiController::class, 'print'])->name('laporan.print');
+Route::get('/laporan/print/{id}', [TransaksiController::class, 'show'])->name('laporan.print');
 // Route::get('/detail-transaksi', [TransaksiController::class, 'index']);
 
 
@@ -64,10 +68,6 @@ Route::get('/dashboard', function () {
 Route::get('/stok', function () {
     return view('stok');
 })->middleware(['auth', 'verified'])->name('stok');
-
-Route::get('/laporan', function () {
-    return view('laporan');
-})->middleware(['auth', 'verified'])->name('laporan');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

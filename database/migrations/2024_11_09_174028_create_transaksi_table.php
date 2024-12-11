@@ -11,13 +11,15 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('transaksi', function (Blueprint $table) {
-            $table->id('kode_transaksi')->primary();
+            $table->id('kode_transaksi');
             $table->foreignId('id_pemilik')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('id_karyawan')->nullable()->constrained('karyawan')->onDelete('set null');
             // Use string instead of foreignId for alphanumeric 'id_member'
-            $table->string('id_member');  // Changed to string to match 'id' in pelanggan table
+            $table->foreignId('id_member')->nullable()->references('id')->on('pelanggan')->onDelete('set null');
             $table->date('tgl_transaksi');
             $table->float('total_harga', 2);
+            $table->float('total_pembayaran', 2)->nullable();
+            $table->string('nama_pelanggan');
             $table->timestamps();
         });
     }

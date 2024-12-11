@@ -40,9 +40,9 @@
                             </thead>
                             <tbody>
                                 @forelse ($pelanggan as $member)
-                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                         <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
-                                            {{ $member->id }}
+                                            {{$member->id}}
                                         </td>
                                         <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">
                                             {{ $member->nama_member }}

@@ -13,7 +13,7 @@ class ProdukController extends Controller
     public function index()
     {
         $produk = Produk::all();
-        return view('produk', compact('produk'));
+        return view('produk.index', compact('produk'));
     }
 
     /**
@@ -31,9 +31,8 @@ class ProdukController extends Controller
     {
         $request->validate([
             'nama_produk' => 'required',
-            'deskripsi' => 'nullable',
-            'harga' => 'required|numeric',
-            'stok' => 'required|integer',
+            'harga_produk' => 'required|numeric',
+            'stok_produk' => 'required|integer',
         ]);
 
         Produk::create($request->all());
@@ -64,9 +63,8 @@ class ProdukController extends Controller
     {
         $request->validate([
             'nama_produk' => 'required',
-            'deskripsi' => 'nullable',
-            'harga' => 'required|numeric',
-            'stok' => 'required|integer',
+            'harga_produk' => 'required|numeric',
+            'stok_produk' => 'required|integer',
         ]);
 
         $produk->update($request->all());

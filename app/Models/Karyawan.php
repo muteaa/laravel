@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Karyawan extends Model
 {
     use HasFactory;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    
     protected $table = 'karyawan';
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'nama_karyawan',
         'kontak_karyawan',

@@ -56,7 +56,7 @@ class KaryawanController extends Controller
 
       
         $karyawan->update($request->only('nama_karyawan', 'kontak_karyawan', 'email'));
-        return redirect()->route('karyawan')->with('success', 'Karyawan updated successfully.');
+        return redirect()->route('karyawan.index')->with('success', 'Karyawan updated successfully.');
     }
 
     // Remove the specified resource from storage

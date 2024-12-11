@@ -12,7 +12,7 @@ class PelangganFactory extends Factory
     public function definition()
     {
         return [
-            'id' => strtoupper(Str::random(3)) . rand(1000, 9999),  // Generate a random alphanumeric ID
+            'id' => rand(1000, 9999),  // Generate a random alphanumeric ID
             'nama_member' => $this->faker->name(),
             'kontak_member' => $this->faker->phoneNumber(),
             'alamat_member' => $this->faker->address(),

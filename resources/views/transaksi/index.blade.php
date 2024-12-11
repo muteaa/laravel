@@ -23,14 +23,11 @@
                                 <th class="border border-gray-700 dark:border-gray-600 px-4 py-2 text-center">No</th>
                                 <th class="border border-gray-700 dark:border-gray-600 px-4 py-2 text-center">Nama
                                     Pegawai</th>
-                                <th class="border border-gray-700 dark:border-gray-600 px-4 py-2 text-left">Nama
-                                    Pelanggan</th>
+                                <th class="border border-gray-700 dark:border-gray-600 px-4 py-2 text-left">Kode Referal</th>
                                 <th class="border border-gray-700 dark:border-gray-600 px-4 py-2 text-left">Tanggal
                                     Transaksi</th>
                                 <th class="border border-gray-700 dark:border-gray-600 px-4 py-2 text-right">Total Harga
-                                </th>
-                                <th class="border border-gray-700 dark:border-gray-600 px-4 py-2 text-center">Aksi</th>
-                            </tr>
+                                </th>  </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-300 dark:divide-gray-700">
                             @foreach ($transaksis as $index => $transaksi)
@@ -43,25 +40,16 @@
                                         {{ $transaksi->karyawan ? $transaksi->karyawan->nama_karyawan : 'Pemilik' }}
                                     </td>
                                     <td class="border border-gray-700 dark:border-gray-600 px-4 py-2">
-                                        {{ $transaksi->pelanggan->nama_member}}
+                                        {{ $transaksi->pelanggan?->nama_member ?? 'Tidak ada' }}
                                     </td>
+
                                     <td class="border border-gray-700 dark:border-gray-600 px-4 py-2">
                                         {{ $transaksi->tgl_transaksi }}
                                     </td>
                                     <td class="border border-gray-700 dark:border-gray-600 px-4 py-2 text-right">
                                         {{ number_format($transaksi->total_harga, 2) }}
                                     </td>
-                                    <td class="border border-gray-700 dark:border-gray-600 px-4 py-2 text-center">
-                                        <a href="{{ route('transaksi.edit', $transaksi->kode_transaksi) }}"
-                                            class="text-blue-500 hover:underline">Edit</a>
-                                        <form action="{{ route('transaksi.destroy', $transaksi->kode_transaksi) }}"
-                                            method="POST" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-red-500 hover:underline"
-                                                onclick="return confirm('Yakin ingin menghapus transaksi ini?')">Delete</button>
-                                        </form>
-                                    </td>
+                                  
                                 </tr>
                             @endforeach
                         </tbody>
